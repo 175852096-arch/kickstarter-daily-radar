@@ -1,0 +1,25 @@
+{
+  "timezone": "Asia/Singapore",
+  "run_hour_local": 9,
+  "lookback_hours": 24,
+  "top_n": 10,
+  "categories": [
+    "Technology",
+    "Design",
+    "Games",
+    "Crafts",
+    "Fashion",
+    "Publishing"
+  ],
+  "scoring": {
+    "novelty": 25,
+    "market_need": 20,
+    "momentum": 20,
+    "commercial_opportunity": 20,
+    "social_shareability": 10,
+    "risk_penalty": 5
+  },
+  "sources": {
+    "google_news_rss": true
+  }
+}

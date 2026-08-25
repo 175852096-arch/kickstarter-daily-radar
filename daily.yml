@@ -1,0 +1,32 @@
+name: Kickstarter Daily Radar
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 1 * * *" # 09:00 Asia/Singapore
+
+permissions:
+  contents: write
+
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run radar
+        run: python scripts/run.py
+
+      - name: Commit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/projects.json reports/
+          git diff --cached --quiet || git commit -m "chore: update daily Kickstarter radar"
+          git push
